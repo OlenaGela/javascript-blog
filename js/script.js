@@ -76,7 +76,7 @@ function generateTitleLinks() {
     link.addEventListener('click', titleClickHandler);
   }
 }
-generateTitleLinks(); //wywołanie funkcji
+generateTitleLinks(); //wywolanie funkcji
 console.log('Function was generated!');
 
 
@@ -97,25 +97,30 @@ function generateTags() {
     const tagsWrapper = article.querySelector(optArticleTagsSelector);
     console.log('Find tags wrapper:', tagsWrapper);
  
-    /* [IN PROGRESS] make html variable with empty string */
-    //let html = '';
-    //html.innerHTML = '';
+    /* [DONE???] make html variable with empty string */
+    let HTML = '';
+    console.log('HTML variable with empty string was created', HTML);
 
-    /* [IN PROGRESS] get tags from data-tags attribute */
-    //const articleTags = article.getAttribute('data-tags');
-    //console.log('articleTags:', articleTags);
+    /* [DONE] get tags from data-tags attribute */
+    const articleTags = article.getAttribute('data-tags');
+    console.log('articleTags:', articleTags);
 
-    /* [IN PROGRESS] split tags into array */
-    //const articleTagsArray = articleTags.split(' ');
-    //console.log('articleTagsArray:' articleTagsArray);
+    /* [DONE] split tags into array */
+    const articleTagsArray = articleTags.split(' ');
+    console.log('articleTagsArray:', articleTagsArray);
     
-    /* [IN PROGRESS] START LOOP: for each tag */
-    //for(let tag of articleTagArray){
-    
-    /* generate HTML of the link */
-    
-    /* add generated code to html variable */
-  
+    /* [DONE] START LOOP: for each tag */
+    for(let tag of articleTagsArray){
+      console.log('tag:', tag);
+
+      /* [DONE] generate HTML of the link */
+      const linkHTML = '<li><a href="#tag-' + tag + '">' + tag + '</a></li>';
+      console.log('linkHTML:', linkHTML);
+
+      /* [IN PROGRESS] add generated code to html variable */
+      HTML.insertAdjacentHTML('beforeend', linkHTML);
+    }
+
     /* END LOOP: for each tag */
   }
 
