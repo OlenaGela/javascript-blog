@@ -97,7 +97,7 @@ function generateTags() {
     const tagsWrapper = article.querySelector(optArticleTagsSelector);
     console.log('Find tags wrapper:', tagsWrapper);
  
-    /* [DONE???] make html variable with empty string */
+    /* [DONE] make html variable with empty string */
     let HTML = '';
     console.log('HTML variable with empty string was created', HTML);
 
@@ -117,16 +117,19 @@ function generateTags() {
       const linkHTML = '<li><a href="#tag-' + tag + '">' + tag + '</a></li>';
       console.log('linkHTML:', linkHTML);
 
-      /* [IN PROGRESS] add generated code to html variable */
-      HTML.insertAdjacentHTML('beforeend', linkHTML);
+      /* [DONE] add generated code to html variable */
+      HTML = HTML + linkHTML;
+      console.log('HTML variable:', HTML);
+    
+    /* [DONE] END LOOP: for each tag */
     }
-
-    /* END LOOP: for each tag */
+  
+  /* [DONE] insert HTML of all the links into the tags wrapper */
+  tagsWrapper.insertAdjacentHTML('beforeend', HTML);
+  console.log('Created tag wrapper:', tagsWrapper);
   }
 
-  /* insert HTML of all the links into the tags wrapper */
-
-  /* END LOOP: for every article: */
+  /* [DONE] END LOOP: for every article: */
 }
 
 generateTags();
