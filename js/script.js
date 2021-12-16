@@ -15,7 +15,6 @@ function titleClickHandler(event) {
   }
 
   /* [DONE] add class 'active' to the clicked link */
-  console.log('clickedElement:', clickedElement);
   clickedElement.classList.add('active');
 
   /* [DONE] remove class 'active' from all articles */
@@ -26,7 +25,6 @@ function titleClickHandler(event) {
 
   /* [DONE] get 'href' attribute from the clicked link */
   const articleSelector = clickedElement.getAttribute('href');
-  console.log('articleSelector:', articleSelector);
 
   /* [DONE] find the correct article using the selector (value of 'href' attribute) */
   const correctArticle = document.querySelector(articleSelector);
@@ -40,7 +38,8 @@ function titleClickHandler(event) {
 const optArticleSelector = '.post',
   optTitleSelector = '.post-title',
   optTitleListSelector = '.titles',
-  optArticleTagsSelector = '.post-tags .list';
+  optArticleTagsSelector = '.post-tags .list',
+  optArticleAuthorSelector = '.post-author';
 
 
 function generateTitleLinks(customSelector = '') {
@@ -179,3 +178,90 @@ function addClickListenersToTags(){
   }
 }
 addClickListenersToTags();
+
+
+function generateAuthors(){
+  console.log('Start function "generateAuthors"!');
+
+  /* [IN PROGRESS] find all articles */
+  const articles = document.querySelectorAll(optArticleSelector);
+  console.log('const articles: ', articles);
+
+  /* [IN PROGRESS] START LOOP: for every article: */
+  for (let article of articles) {
+    console.log('let article: ', article);
+  
+    /* [IN PROGRESS] find author place */
+    const authorPlace = article.querySelector(optArticleAuthorSelector);
+    console.log('const authorPlace: ', authorPlace);
+ 
+    /* [IN PROGRESS] make html variable with empty string */
+    let HTML = '';
+    console.log('let HTML:', HTML, '.');
+    
+    /* [IN PROGRESS] get author from data-author attribute */
+    const articleAuthor = article.getAttribute('data-author');
+    console.log('const articleAuthor: ', articleAuthor);
+  
+    /* [] generate HTML of the link */
+     const linkHTML = '<a href="'+articleAuthor+'">' + articleAuthor + '</a>';
+      
+     /* [] add generated code to html variable */
+     HTML = HTML + linkHTML;
+
+    /* [IN PROGRESS] insert HTML of all the links into the author place */
+    authorPlace.insertAdjacentHTML('beforeend', HTML);
+  }
+
+  /* [IN PROGRESS] END LOOP: for every article: */
+}
+generateAuthors(); 
+
+
+function authorClickHandler(event){
+  console.log('Start function authorClickHandler!');
+  console.log('Author was clicked!');
+
+  /* [IN PROGRESS] prevent default action for this event */
+  event.preventDefault();
+
+  /* [IN PROGRESS] make new constant named "clickedElement" and give it the value of "this" */
+  const clickedElement = this;
+
+  /* [IN PROGRESS] make a new constant "href" and read the attribute "href" of the clicked element */
+  const href = clickedElement.getAttribute('href');
+  console.log('href attribute:', href);
+
+  /* [IN PROGRESS] remove class active */
+  //href.classList.remove('active');
+  /* [IN PROGRESS] find all author links with "href" attribute equal to the "href" constant */
+  //const authorLink = document.querySelectorAll('href');
+  //console.log('authorLink', authorLink);
+  /* [IN PROGRESS] START LOOP: for each found author link */
+  //for (let foundAuthorLink of authorLinks) {
+  /* [IN PROGRESS] add class active */
+  //authorLink.classList.add('active');
+  /* [IN PROGRESS] END LOOP: for each found author link */
+  //}
+  /* [IN PROGRESS] execute function "" with article selector as argument (???) */
+}
+
+
+function addClickListenersToAuthors(){
+  console.log('Start function addClickListenersToAuthors!');
+
+  /* [IN PROGRESS] find all links to authors */
+  const links = document.querySelectorAll('.post-author a');
+  console.log('links', links);
+
+  /* [IN PROGRESS] START LOOP: for each link */
+  for (let link of links) {
+
+    /* [IN PROGRESS] add tagClickHandler as event listener for that link */
+    link.addEventListener('click', authorClickHandler);
+    console.log('link', link);
+
+    /* [IN PROGRESS] END LOOP: for each link */
+  }
+}
+addClickListenersToAuthors();
